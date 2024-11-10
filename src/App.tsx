@@ -5,6 +5,8 @@ import {
   NavigationContainer,
   useNavigationContainerRef,
 } from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import {store} from './store/store';
 
 interface AppProps {}
 
@@ -12,9 +14,11 @@ const App = (props: AppProps) => {
   const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
 
   return (
-    <NavigationContainer ref={navigationRef}>
-      <RootNavigation />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer ref={navigationRef}>
+        <RootNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
