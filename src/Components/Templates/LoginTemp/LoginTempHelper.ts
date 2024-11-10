@@ -2,6 +2,8 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import {SCREENS} from '../../../Navigatior/Names/screenNames';
 import {login} from '../../../store/Slices/auth';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../../../store/store';
 
 GoogleSignin.configure({
   webClientId:
@@ -11,6 +13,7 @@ GoogleSignin.configure({
 });
 export const useLoginTempHelper = () => {
   const navigation = useNavigation();
+  const dispatch: AppDispatch = useDispatch();
   const handleGoogleLogin = () => {
     // Handle Google login logic
   };
@@ -19,7 +22,7 @@ export const useLoginTempHelper = () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log('User Info:', userInfo);
-      login({user: userInfo, token: userInfo.data?.idToken});
+      dispatch(login({user: userInfo, token: userInfo.data?.idToken}));
       // @ts-ignore
       navigation.reset({routes: [{name: SCREENS.HOME}]});
     } catch (error) {
