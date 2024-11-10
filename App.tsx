@@ -24,6 +24,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {SCREENS} from './src/Navigatior/Names/screenNames';
+import {customNavigationHook} from './src/Navigatior/customNavigationHook/customNavigationHook';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -41,6 +43,8 @@ function Section({children, title}: SectionProps): React.JSX.Element {
           },
         ]}>
         {title}
+        {SCREENS.HOME}
+        {customNavigationHook('ProfileScreen')}
       </Text>
       <Text
         style={[
