@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
 import {RootNavigation} from './Navigatior/customNavigationHook/Stacks/MainStack';
 import {
   NavigationContainer,
@@ -7,23 +6,22 @@ import {
 } from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {store} from './store/store';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
-interface AppProps {}
+const queryClient = new QueryClient();
 
-const App = (props: AppProps) => {
+const App = () => {
   const navigationRef = useNavigationContainerRef(); // You can also use a regular ref with `React.useRef()`
 
   return (
-    <Provider store={store}>
-      <NavigationContainer ref={navigationRef}>
-        <RootNavigation />
-      </NavigationContainer>
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <NavigationContainer ref={navigationRef}>
+          <RootNavigation />
+        </NavigationContainer>
+      </Provider>
+    </QueryClientProvider>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {},
-});

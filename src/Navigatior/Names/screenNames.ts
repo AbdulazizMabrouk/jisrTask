@@ -1,7 +1,7 @@
 export const SCREENS = {
   HOME: 'HomeScreen',
   LOGIN: 'LoginScreen',
-  PROFILE: 'ProfileScreen',
+  CATEGORY_LIST: 'CategoryList',
   SETTINGS: 'SettingsScreen',
 } as const;
 

@@ -6,5 +6,5 @@ interface AppTextProps {
   style?: TextInputProps;
 }
 export const AppText = ({children, style}: AppTextProps) => {
-  return <Text style={[style]}>{children}</Text>;
+  return <Text style={style}>{children}</Text>;
 };

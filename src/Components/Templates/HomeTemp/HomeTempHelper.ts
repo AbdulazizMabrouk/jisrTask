@@ -1,16 +1,13 @@
-import axiosInstance from '../../../Api/instance';
+import {useNavigation} from '@react-navigation/native';
+import {SCREENS} from '../../../Navigatior/Names/screenNames';
+import {Categories, RootParamList} from '../../../Utils/interfaces';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export const useHomeTempHelper = () => {
-  const getAppMovies = async () => {
-    try {
-      const response = await axiosInstance.get('/movies');
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList>>();
 
-      console.log('data', data);
-      return response;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+  const handleSelectItem = (item: Categories) => {
+    navigation.navigate(SCREENS.CATEGORY_LIST, {cat: item});
   };
-
-  return {getAppMovies};
+  return {handleSelectItem};
 };
